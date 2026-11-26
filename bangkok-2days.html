@@ -93,6 +93,14 @@
       }
       @media (prefers-color-scheme: dark){ .ad-slot{ border-color:#33413d; } }
       .ad-slot b{ display:block; font-size:10px; letter-spacing:.22em; font-weight:500; color:var(--ink-soft); }
+      /* ad body: reserve the banner height so the layout stays put before/without an ad fill */
+      .ad-slot-body{
+        position:relative; min-height:50px; margin-top:2px;
+        display:flex; align-items:center; justify-content:center; overflow:hidden;
+      }
+      .ad-slot-ph{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+      .ad-slot-body > *:not(.ad-slot-ph){ position:relative; }
+      .ad-slot iframe, .ad-slot img, .ad-slot ins{ max-width:100%; }
       /* ---------- cards & steps ---------- */
       .card{
         background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
@@ -446,7 +454,9 @@
         <button type="button" class="samples-open" id="samplesOpenBtn" aria-haspopup="true"><span id="samplesOpenLabel">サンプルを見る</span><span class="arr" aria-hidden="true">→</span></button>
       </div>
 
-      <div class="ad-slot" aria-label="広告"><b>AD</b>広告スペース</div>
+      <div class="ad-slot" aria-label="広告"><b>AD</b><div class="ad-slot-body"><span class="ad-slot-ph">広告スペース</span><!-- admax -->
+<script src="https://adm.shinobi.jp/s/31bda38aa0103fbe0d5d8d22359d5172"></script>
+<!-- admax --></div></div>
 
       <!-- MODEL COURSES -->
       <section class="courses" aria-labelledby="coursesTitle">
@@ -604,7 +614,9 @@
           </div>
         </div>
         <div id="shiori"></div>
-        <div class="ad-slot" aria-label="広告"><b>AD</b>広告スペース</div>
+        <div class="ad-slot" aria-label="広告"><b>AD</b><div class="ad-slot-body"><span class="ad-slot-ph">広告スペース</span><!-- admax -->
+<script src="https://adm.shinobi.jp/s/1ff4ea8500d495686b95ecc5a55fee39"></script>
+<!-- admax --></div></div>
       </section>
 
       <footer class="site" id="siteFooter">
@@ -1561,8 +1573,8 @@
         Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function(el){
           el.textContent = t(el.getAttribute("data-i18n"));
         });
-        Array.prototype.forEach.call(document.querySelectorAll(".ad-slot"), function(el){
-          el.innerHTML = "<b>AD</b>" + esc(t("adSpace"));
+        Array.prototype.forEach.call(document.querySelectorAll(".ad-slot-ph"), function(el){
+          el.textContent = t("adSpace");
         });
         $("daysUnit").textContent = t("daysUnit");
         $("travUnit").textContent = t("travelersUnit");
